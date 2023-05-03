@@ -1,9 +1,10 @@
 interface TodoListProps {
 	todoList: Todo[];
+	filteredTodoList: Todo[];
 	setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-export default function TodoList({ todoList, setTodoList }: TodoListProps) {
+export default function TodoList({ todoList, filteredTodoList, setTodoList }: TodoListProps) {
 	const handleDelete = (id: UID) => {
 		setTodoList(todoList.filter((item) => item.id !== id));
 	};
@@ -20,7 +21,7 @@ export default function TodoList({ todoList, setTodoList }: TodoListProps) {
 		<div className="mx-auto flex max-w-lg flex-col text-center text-white ">
 			<h1 className="bg-gray-900 p-2 text-lg font-bold ">Todo List</h1>
 			<ul>
-				{todoList.map((item) => (
+				{filteredTodoList.map((item) => (
 					<li key={item.id} className="flex items-center  justify-between bg-gray-700 p-2">
 						<div className={item.completed ? "p-2 line-through opacity-50" : "p-2"}>
 							<input
